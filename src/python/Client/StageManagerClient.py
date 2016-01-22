@@ -5,11 +5,11 @@ to invoke functionality
 """
 import sys
 import httplib
+import json
 import time
 from optparse import OptionParser
 from WMCore.Database.CMSCouch import CouchServer
 from WMCore.Services.Requests import Requests
-from WMCore.Wrappers import JsonWrapper
 
 class StageManagerClient:
     def __init__(self, dburl, logger):
@@ -273,7 +273,7 @@ class StageManagerClient:
 
             # Parse block info and check > 0 block exist
             try:
-                if len(JsonWrapper.loads(pdata)['phedex']['block']) == 0:
+                if len(json.loads(pdata)['phedex']['block']) == 0:
                    goodToGo = False
                    self.logger.error('Block %s not resident at site %s' % (data, locSite))
             except:

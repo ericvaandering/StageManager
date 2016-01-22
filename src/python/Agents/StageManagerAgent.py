@@ -6,8 +6,8 @@ from WMCore.Database.CMSCouch import CouchServer
 from WMCore.Lexicon import cmsname
 from WMCore.WMFactory import WMFactory
 from WMCore.Services.Requests import Requests
-from WMCore.Wrappers import JsonWrapper
 import httplib
+import json
 import urllib
 import sys
 import time
@@ -253,7 +253,7 @@ class StageManagerAgent:
 
             # Parse block info
             try:
-                p = JsonWrapper.loads(pdata)
+                p = json.loads(pdata)
                 if len(p['phedex']['block']) == 0:
                    self.logger.error('Block %s not resident at site %s' % (d, self.node))
                 else:
